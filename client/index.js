@@ -62,14 +62,12 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                     // outputContainer.video.height = inputContainer.video.clientHeight;
                     
                     captureCtx.drawImage(inputContainer.video, 0, 0, outputContainer.video.width, outputContainer.video.height);
+                    // imgURL = captureCanvas.toDataURL('image/png');
                     img = captureCtx.getImageData(0, 0, outputContainer.video.width, outputContainer.video.height);
-                    // outputContainer.listImage.push(img);
-                    // outputContainer.fcUpdateVideoDuration();
                     buffer.CookieFrame(img);
                     outputContainer.fcUpdateVideoDuration();
                 }
-                
-            }, 33);
+            }, 1000/30);
         };
         
         // mediaRecorder = new MediaRecorder(stream);

@@ -2,7 +2,7 @@
 RESOURCE_URL = 'http://127.0.0.1:5000/frame';
 var count_upserver = 0;
 function UpserverFrame(image, buffer){
-    console.log(image);
+    // console.log(image);
     count_upserver += 1;
     const data = convertImgDataToPNGURL(image);
     // console.log(data);
