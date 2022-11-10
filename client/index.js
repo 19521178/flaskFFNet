@@ -1,24 +1,31 @@
-const inputContainer = new InputContainer()
+const inputContainer = new InputContainer();
 const videoWorks = !!document.createElement('video').canPlayType;
 if (videoWorks) {
     inputContainer.video.controls = false;
     inputContainer.videoControls.classList.remove('hidden');
 }
 
-const outputContainer = new OutputContainer()
+const outputContainer = new OutputContainer();
 // const videoWorks = !!document.createElement('video').canPlayType;
 if (true) {
     // outputContainer.video.controls = false;
     outputContainer.videoControls.classList.remove('hidden');
 }
 
-// var buffer = new Buffer(length=120, idMaxPoint=60)
-// alert(outputContainer)
-// var mediaRecorder;
-// b = new MediaSource()
+var buffer = new Buffer(length=200, idMaxPoint=100, savedFrames=outputContainer.listImage);
+// document.addEventListener('upserver', (e)=>{
+//     console.log(e);
+//     UpserverFrame(e.image, e.buffer);
+// })
+
+
+var captureCanvas;
+var captureCtx;
+var convertURLCanvas;
+var convertURLctx;
+
 // Add functions here
 // Get access to the camera!
-// exports.blobing;
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices.getUserMedia({audio: false, 
@@ -36,19 +43,29 @@ if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         inputContainer.video.onloadedmetadata = () => {
             outputContainer.video.width = inputContainer.video.clientWidth;
             outputContainer.video.height = inputContainer.video.clientHeight;
+
+            captureCanvas = document.createElement('canvas');
+            captureCanvas.width = outputContainer.video.width;
+            captureCanvas.height = outputContainer.video.height;
+            captureCtx = captureCanvas.getContext('2d');
+
+            convertURLCanvas = document.createElement('canvas');
+            convertURLCanvas.width = outputContainer.video.width;
+            convertURLCanvas.height = outputContainer.video.height;
+            convertURLctx = convertURLCanvas.getContext('2d');
+
             captureBlob = setInterval(() => {
-                if(inputContainer.video.paused){}
+                if(inputContainer.video.paused || inputContainer.video.currentTime > 5){}
                 else{
                     // alert('Thay doi kich thuoc');
                     // outputContainer.video.width = inputContainer.video.clientWidth;
                     // outputContainer.video.height = inputContainer.video.clientHeight;
-                    const tempCanvas = document.createElement('canvas');
-                    tempCanvas.width = outputContainer.video.width;
-                    tempCanvas.height = outputContainer.video.height;
-                    const tempRCanvas = tempCanvas.getContext('2d');
-                    tempRCanvas.drawImage(inputContainer.video, 0, 0, outputContainer.video.width, outputContainer.video.height);
-                    img = tempRCanvas.getImageData(0, 0, outputContainer.video.width, outputContainer.video.height);
-                    outputContainer.listImage.push(img);
+                    
+                    captureCtx.drawImage(inputContainer.video, 0, 0, outputContainer.video.width, outputContainer.video.height);
+                    img = captureCtx.getImageData(0, 0, outputContainer.video.width, outputContainer.video.height);
+                    // outputContainer.listImage.push(img);
+                    // outputContainer.fcUpdateVideoDuration();
+                    buffer.CookieFrame(img);
                     outputContainer.fcUpdateVideoDuration();
                 }
                 

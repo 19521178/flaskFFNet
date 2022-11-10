@@ -72,11 +72,13 @@ const OutputContainer = function(){
             if (this.idPlaying >= this.listImage.length){
                 this.idPlaying -= 1;
                 console.log(this.idPlaying);
+                
                 // this.pause();
                 this.fcTogglePlay();
             }
             else{
                 this.renderCanvas.putImageData(this.listImage[this.idPlaying], 0, 0);
+                // console.log(Array.from(this.listImage[0].data));
                 this.videoControls.dispatchEvent(this.timeUpdateEvent);
             }
         }, 1000/this.fps);
