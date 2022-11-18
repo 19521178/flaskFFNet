@@ -8,14 +8,14 @@ import base64
 from io import BytesIO
 from PIL import Image
 
-# from model.layers import create_FC_layers
+# from server.model.layers import create_FC_layers
 # import numpy as np
-# from model.neural_network import FCNet, GRUNet
-# from model.post_processor import ExtendBoth
-# from model.utils.DictNamespace import DictNamespace as dict
-# from model.extract_feature_model import AlexNet, MobileNetV3Large
-# from model.static_var import *
-# from model.post_processor import ExtendAll, NoneExtend
+# from server.model.neural_network import FCNet, GRUNet
+# from server.model.post_processor import ExtendBoth
+# from server.model.utils.DictNamespace import DictNamespace as dict
+# from server.model.extract_feature_model import AlexNet
+# from server.model.static_var import *
+# from server.model.post_processor import ExtendAll, NoneExtend
 
 # opt_params = dict(
 #     optimizer = TypesOptimizer.RMSPROP,
@@ -33,7 +33,7 @@ from PIL import Image
 # dims_FC = [400, 200, 100, 25]
 # FC_layers = create_FC_layers([dim_input] + dims_FC, is_regular=False, regular_params = regular_params)
 # model = FCNet(opt_params, model_params, FC_layers)
-# model.load_model('./model/', 'epoch_80')
+# model.load_model('./server/model/FC-base/', 'epoch_850')
 
 # post_processor = ExtendBoth(
 #     window_size = 0,
@@ -43,7 +43,7 @@ from PIL import Image
 #     threshold = 15
 # )
 
-# extractor = MobileNetV3Large()
+# extractor = AlexNet()
 
 current_frame = None
 # previous_info = model.init_info()
@@ -59,9 +59,6 @@ CORS(app)
 def abort_if_frame_doesnt_exist():
     if current_frame is None:
         abort(404, message="There's not any frame has uploaded")
-
-# parser = reqparse.RequestParser()
-# parser.add_argument('image')
 
 class CurrentFrame(Resource):
     def get(self):
@@ -117,11 +114,8 @@ api.add_resource(CurrentFrame, '/frame')
 def login():
     # GHI DANH AUTHORIZE
     # lưu session, user_id;
-    # khởi tạo biến current_frame và previous_info cho user;
+    # khởi tạo biến current_frame và previous_info cho user_id;
     # trả về token
-    print(os.listdir('./client'))
-    print(app.template_folder)
-    # return render_template('client/index.html')
     return render_template(template_name_or_list='index.html')
 
 if __name__ == '__main__':  

@@ -1,4 +1,5 @@
-from torchvision.models import alexnet, mobilenet_v3_large
+from torchvision.models import alexnet
+# , mobilenet_v3_large
 import torchvision.transforms as transforms
 import torch
 from PIL import Image

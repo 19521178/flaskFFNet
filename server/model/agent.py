@@ -1,7 +1,7 @@
-import tensorflow as tf 
+import tensorflow.compat.v1 as tf 
 import numpy as np
-from extract_feature_model import Extractor
-from neural_network import NeuralNetwork
+from .extract_feature_model import Extractor
+from .neural_network import NeuralNetwork
 import scipy.io as sio
 import cv2
 from scipy.stats import norm

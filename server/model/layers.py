@@ -1,6 +1,8 @@
-import tensorflow as tf 
+import tensorflow.compat.v1 as tf 
 import numpy as np
-from static_var import *
+from .static_var import *
+
+tf.disable_v2_behavior()
 
 class FCLayer(object):
     def __init__(self, dim_input, dim_output, activation = TypesActivation.LINEAR, regularizer = None):

@@ -29,7 +29,7 @@ function convertImgDataToUint8Array(imgdata){
 
 function convertImgDataToPNGURL(imgdata){
     convertURLctx.putImageData(imgdata, 0, 0);
-    const base64Img = convertURLCanvas.toDataURL('image/png');
+    const base64Img = convertURLCanvas.toDataURL('image/jpeg', quality=1);
     // console.log(tempRCanvas);
 
     // let file = null;

@@ -1,6 +1,6 @@
-import tensorflow as tf
-from static_var import *
-from utils.DictNamespace import DictNamespace as dict
+import tensorflow.compat.v1 as tf
+from .static_var import *
+from .utils.DictNamespace import DictNamespace as dict
 import numpy as np
 
 class NeuralNetwork(object):

@@ -1,4 +1,3 @@
-from turtle import window_height
 import numpy as np
 
 class PostProcessor(object):
