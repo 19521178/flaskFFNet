@@ -51,8 +51,10 @@ class ExtendBoth(PostProcessor):
             if self.window_size_skip<0:
                 return []
             else:
+                return [i for i in range(-self.window_size_skip * self.step_select_skip, self.window_size_skip * self.step_select_skip+1, self.step_select_skip)]
                 return np.arange(-self.window_size_skip * self.step_select_skip, self.window_size_skip * self.step_select_skip+1, self.step_select_skip).tolist()
         else:
+            return [i for i in range(-self.window_size, self.window_size+1, 1)]
             return np.arange(-self.window_size, self.window_size+1, 1).tolist()
         
     def forward(self, summary):

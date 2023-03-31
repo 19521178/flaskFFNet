@@ -1,7 +1,7 @@
 
 // inputVideoModule = require('./inputVideo.js')
 // console.log(inputVideoModule.blobing)
-const OutputContainer = function(){
+const OutputContainer = function(fps){
     this.outputVideoContainer = document.getElementById('output-video-container');
     this.video = this.outputVideoContainer.querySelector('#video');
     this.videoControls = this.outputVideoContainer.querySelector('#video-controls');
@@ -23,14 +23,14 @@ const OutputContainer = function(){
     this.fullscreenIcons = this.fullscreenButton.querySelectorAll('use');
     this.pipButton = this.outputVideoContainer.querySelector('#pip-button');
 
-    this.renderCanvas = this.video.getContext('2d');
+    this.renderCanvas = this.video.getContext('2d', { willReadFrequently: true });
     this.idPlaying = 0;
     this.lenVideo = 0;
     this.listImage = [];
     this.isPlaying = false;
     this.isPaused = true;
     this.isStopped = false;
-    this.fps = 30;
+    this.fps = fps;
     this.renderInterval;
 
 
